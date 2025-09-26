@@ -3,7 +3,7 @@ if exists('g:loaded_multif')
 endif
 let g:loaded_multif = 1
 
-let g:multi_chars = get(g:, 'multif_chars', {})
+let g:multif_chars = get(g:, 'multif_chars', {})
 
 noremap <silent><expr><Plug>(multif-f) multif#Forward("f")
 noremap <silent><expr><Plug>(multif-t) multif#Forward("t")
