@@ -84,8 +84,6 @@ let g:multif_keys = {
 
 ### Additional Examples of Custom Target Characters
 
-Provide sample configurations to illustrate possible target character setups beyond your own dictionary.
-
 #### Multibyte:
 ```
 let g:multif_chars = {
