@@ -18,17 +18,19 @@ Plug 'juro106/vim-multif'
 
 ### Setting Target Characters
 
-Nothing is set by default. Configure your `vimrc` as follows:
-
 ```
 { 
   'key1': ['char1', 'char2', ...],
   'key2': ['char1', 'char2', ...],
   ...
 }
+```
 
 In the dictionary, both the keys (the keys you press) and the target characters (the characters each key maps to) must be single characters.
 
+Nothing is set by default. Configure your `vimrc` as follows:
+
+```
 let g:multif_chars = {
   / '.': ['.', '。', '．'],
   / ',': [',', '、', '，'],
