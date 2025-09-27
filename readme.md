@@ -86,9 +86,8 @@ let g:multif_keys = {
 
 Provide sample configurations to illustrate possible target character setups beyond your own dictionary.
 
+#### Multibyte:
 ```
-Multibyte:
-
 let g:multif_chars = {
   \ '.': ['.', '。', '．'],
   \ ',': [',', '、', '，'],
@@ -115,9 +114,8 @@ let g:multif_chars = {
   \ }
 ```
 
+#### Shift-Free:
 ```
-Shift-Free:
-
 let g:multif_chars = {
   \ '1': ['1', '!', '¡'],
   \ '2': ['2', '@', '²'],
@@ -143,19 +141,17 @@ let g:multif_chars = {
   \ }
 ```
 
+#### Multi-Symbol Navigation:
 ```
-Multi-Symbol Navigation:
-
 let g:multif_chars = {
   \ ';': [';', ':', '!', '@', '#', '$', '%', '^', '&', '*', '?', '~']
   \ '[': ['[', '(', '{', '<' ]
   \ ']': [']', ')', '}', '>' ]
-]
   \ }
 ```
 
+#### Japanese:
 ```
-Japanese:
 let g:multif_chars = {
   \ '.': ['.', '。', '．'],
   \ ',': [',', '、', '，'],
