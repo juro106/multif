@@ -1,42 +1,26 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! multif#Forward(key) abort
-    let list = s:GetTargetList(a:key)
-    return a:key . s:SetForwardChar(list)
-endfunction
-
-function! multif#Backward(key) abort
-    let list = s:GetTargetList(a:key)
-    return a:key . s:SetBackwardChar(list)
-endfunction
-
-function! s:GetTargetList(key) abort
-    let ch = s:InputChar()
-    return has_key(g:multif_chars, ch) ? g:multif_chars[ch] : [ch]
-endfunction
-
-function! s:InputChar() abort
-    let c = getchar(-1, #{cursor: 'keep'})
-    return type(c) == type(0) ? nr2char(c) : c
-endfunction
-
 " f, t: select the character to use for forward search
-function! s:SetForwardChar(list) abort
+function! multif#Forward(key) abort
     let line = getline('.')[col('.')-1:]
-    return s:SetClosestChar(line, a:list)
+    return a:key . s:SetClosestChar(line)
 endfunction
 
 " F, T: select the character to user for backward search
-function! s:SetBackwardChar(list) abort
+function! multif#Backward(key) abort
     let line = reverse(getline('.')[:col('.')-1])
-    return s:SetClosestChar(line, a:list)
+    return a:key . s:SetClosestChar(line)
 endfunction
 
 " select the closest character in the current line
-function! s:SetClosestChar(line, list) abort
+function! s:SetClosestChar(line) abort
+    let n = getchar(-1, #{cursor: 'keep'})
+    let c = type(n) == type(0) ? nr2char(n) : n
+
+    let list = has_key(g:multif_chars, c) ? g:multif_chars[c] : [c]
     let dict = {}
-    for c in a:list
+    for c in list
         let regex_pattern = '\C' . escape(c, '.*^$\[]~')
         let matchcol = match(a:line, regex_pattern, 1, 1)
         if matchcol > 0
@@ -45,7 +29,7 @@ function! s:SetClosestChar(line, list) abort
     endfor
 
     if empty(dict)
-        return a:list[0]
+        return list[0]
     endif
 
     let min_key = ''
@@ -60,25 +44,16 @@ function! s:SetClosestChar(line, list) abort
 endfunction
 
 function multif#CheckConfig(dict)
-    echo g:multif_chars
-    for [key, value] in items(a:dict)
-        if s:IsOneChar(key) == 0
-            call s:ErrMsg(key, 'Please set a single-character string as the dictionary key.')
-            return
-        endif
-        if s:ListCheck(value) == 0
-            call s:ErrMsg(value, 'Please set each element in the list to a single-character string.')
-            return
-        endif
+    if type(a:dict) != v:t_dict | call s:ErrMsg('g:multif_chars', 'Only dictionary type can be used.') | return | endif
+    let dict_str = split(trim(substitute(string(g:multif_chars), '], ', ']::', 'g'), '{}'), '::')
+    for l in dict_str
+        echo l
     endfor
-endfunction
-
-function! s:IsOneChar(str) abort
-    return strchars(a:str) != 1 ? 0 : 1
-endfunction
-
-function! s:ListCheck(list) abort
-    return len(a:list) != strchars(join(a:list, '')) ? 0 : 1
+    for [key, list] in items(a:dict)
+        if strchars(key) != 1 | call s:ErrMsg(key, 'Please set a single-character string as the dictionary key.') | return | endif
+        if type(list) != v:t_list || len(filter(copy(list), 'type(v:val) != v:t_string')) > 0 | call s:ErrMsg(list, 'Dictionary values must be lists of single-character only') | return | endif
+        if len(list) != strchars(join(list, '')) | call s:ErrMsg(list, 'Please set each element in the list to a single-character string.') | return | endif
+    endfor
 endfunction
 
 function! s:ErrMsg(str, note) abort
