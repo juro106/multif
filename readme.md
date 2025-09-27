@@ -27,6 +27,8 @@ Nothing is set by default. Configure your `vimrc` as follows:
   ...
 }
 
+In the dictionary, both the keys (the keys you press) and the target characters (the characters each key maps to) must be single characters.
+
 let g:multif_chars = {
   / '.': ['.', '。', '．'],
   / ',': [',', '、', '，'],
@@ -55,7 +57,7 @@ The same behavior applies to operations like `dfe`, `cte`, `vfe`, and `yte`, whe
 
 ### Key Mappings
 
-By default, ftFT functions as is. To assign a different key, configure your `vimrc` as follows:
+By default, ftFT functions as is. To assign a different key, for example, configure your `vimrc` as follows:
 
 ```
 let g:multif_keys = {
@@ -65,3 +67,11 @@ let g:multif_keys = {
   / 'T': '<Space>T'
   / }
 ```
+
+## Troubleshooting
+
+```
+:MultifCheckConfig
+```
+
+Enter **command-line mode** and run the command above to check the currently configured characters. The plugin will review your settings and display details of any errors it finds.
