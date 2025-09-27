@@ -19,7 +19,7 @@ Plug 'juro106/vim-multif'
 ### Setting Target Characters
 
 ```
-{ 
+let g:multif_chars = { 
   'key1': ['char1', 'char2', ...],
   'key2': ['char1', 'char2', ...],
   ...
@@ -53,9 +53,13 @@ let g:multif_chars = {
   / }
 ```
 
-With this configuration, in **normal mode**, pressing `fe` moves the cursor to the character in the configured list (`e`, `é`, `è`, `ê`, `ë`) that is closest to the cursor.
+With this configuration, in **normal mode** or **visual mode**, pressing `fe (vfe)` moves the cursor to the character in the configured list (`e`, `é`, `è`, `ê`, `ë`) that is closest to the cursor.
 
-The same behavior applies to operations like `dfe`, `cte`, `vfe`, and `yte`, whether in **operator-pending mode** or **visual mode**.
+Repetition with `;` and `,` works just like the default behavior.
+
+The same behavior applies to operations like `dfe`, `cte`, and `yfe`, whether in **operator-pending mode**.
+
+Delete operations with `d` and `c` can be repeated with . exactly as in the default behavior.
 
 ### Key Mappings
 
