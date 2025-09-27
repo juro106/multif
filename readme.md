@@ -59,7 +59,7 @@ Repetition with `;` and `,` works just like the default behavior.
 
 The same behavior applies to operations like `dfe`, `cte`, and `yfe`, whether in **operator-pending mode**.
 
-Delete operations with `d` and `c` can be repeated with . exactly as in the default behavior.
+Delete operations with `d` or `c` can be repeated with `.` exactly as in the default behavior.
 
 ### Key Mappings
 
