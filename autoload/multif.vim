@@ -1,19 +1,16 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-" f, t: select the character to use for forward search
 function! multif#Forward(key) abort
     let line = getline('.')[col('.')-1:]
     return a:key . s:SetClosestChar(line)
 endfunction
 
-" F, T: select the character to user for backward search
 function! multif#Backward(key) abort
     let line = reverse(getline('.')[:col('.')-1])
     return a:key . s:SetClosestChar(line)
 endfunction
 
-" select the closest character in the current line
 function! s:SetClosestChar(line) abort
     let n = getchar(-1, #{cursor: 'keep'})
     let c = type(n) == type(0) ? nr2char(n) : n
@@ -46,6 +43,7 @@ endfunction
 function multif#CheckConfig(dict)
     if type(a:dict) != v:t_dict | call s:ErrMsg('g:multif_chars', 'Only dictionary type can be used.') | return | endif
     let dict_str = split(trim(substitute(string(g:multif_chars), '], ', ']::', 'g'), '{}'), '::')
+    echo 'g:multif_chars:'
     for l in dict_str
         echo l
     endfor
