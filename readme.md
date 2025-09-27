@@ -49,9 +49,9 @@ let g:multif_chars = {
   / }
 ```
 
-With this configuration, in normal mode, pressing `fe` moves the cursor to the character in the configured list (`e`, `é`, `è`, `ê`, `ë`) that is closest to the cursor.
+With this configuration, in **normal mode**, pressing `fe` moves the cursor to the character in the configured list (`e`, `é`, `è`, `ê`, `ë`) that is closest to the cursor.
 
-The same behavior applies to operations like `dfe`, `cte`, `vfe`, and `yte`, whether in operator-pending mode or visual mode.
+The same behavior applies to operations like `dfe`, `cte`, `vfe`, and `yte`, whether in **operator-pending mode** or **visual mode**.
 
 ### Key Mappings
 
