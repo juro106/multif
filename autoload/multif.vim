@@ -18,8 +18,7 @@ function! s:SetClosestChar(line) abort
     let list = has_key(g:multif_chars, c) ? g:multif_chars[c] : [c]
     let dict = {}
     for t in list
-        let regex_pattern = '\C' . escape(t, '.*^$\[]~')
-        let matchcol = match(a:line, regex_pattern, 1, 1)
+        let matchcol = stridx(a:line, t, 1)
         if matchcol > 0
             let dict[t] = matchcol
         endif
