@@ -17,8 +17,6 @@ Plug 'juro106/vim-multif'
 
 ## Configuration
 
-
-
 ### Setting Custom Target Characters
 
 Define your own dictionary of target characters for each key:
@@ -208,11 +206,3 @@ let g:multif_chars = {
   \ '\': ['\', '￥'],
   \  }
 ```
-
-## Troubleshooting
-
-```
-:MultifCheckConfig
-```
-
-Enter **command-line mode** and run the command above to check the currently configured characters. The plugin will review your settings and display details of any errors it finds.

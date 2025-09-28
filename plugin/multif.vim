@@ -1,6 +1,7 @@
 if exists('g:loaded_multif') && g:loaded_multif
 	finish
 endif
+let g:loaded_multif = 1
 
 let g:multif_chars = get(g:, 'multif_chars', {})
 
@@ -18,7 +19,3 @@ for [s:k, s:plug] in [['f','multif-f'], ['t','multif-t'], ['F','multif-F'], ['T'
     execute 'xmap ' . s:key . ' <Plug>(' . s:plug . ')'
     execute 'omap ' . s:key . ' <Plug>(' . s:plug . ')'
 endfor
-
-command! -nargs=0 MultifCheckConfig call multif#CheckConfig(g:multif_chars)
-
-let g:loaded_multif = 1
