@@ -3,15 +3,15 @@ set cpo&vim
 
 function! multif#Forward(key) abort
     let line = getline('.')[col('.')-1:]
-    return a:key . s:SetClosestChar(line)
+    return a:key . s:GetClosestChar(line)
 endfunction
 
 function! multif#Backward(key) abort
     let line = reverse(getline('.')[:col('.')-1])
-    return a:key . s:SetClosestChar(line)
+    return a:key . s:GetClosestChar(line)
 endfunction
 
-function! s:SetClosestChar(line) abort
+function! s:GetClosestChar(line) abort
     let n = getchar(-1, #{cursor: 'keep'})
     let c = type(n) == type(0) ? nr2char(n) : n
 
